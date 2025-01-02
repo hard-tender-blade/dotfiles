@@ -1,0 +1,13 @@
+[manager]
+ratio = [0, 5, 3]
+
+[opener]
+play = [
+    { run = 'mpv "$@"', orphan = true, for = "unix" },
+    { run = '"C:\Program Files\mpv.exe" %*', orphan = true, for = "windows" },
+]
+edit = [
+    { run = 'nvim "$@"', block = true, for = "unix" },
+    { run = "code %*", block = true, for = "windows" },
+]
+open = [{ run = 'xdg-open "$@"', desc = "Open" }]
