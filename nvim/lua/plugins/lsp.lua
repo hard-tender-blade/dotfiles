@@ -12,6 +12,11 @@ return {
                     },
                 },
             },
+            {
+                "pmizio/typescript-tools.nvim",
+                dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+                opts = {},
+            }
         },
         config = function()
             local capabilities = require('blink.cmp').get_lsp_capabilities()
