@@ -17,15 +17,28 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
--- TypeScript-specific actions
-vim.api.nvim_create_autocmd("BufWritePre", {
-    group = vim.api.nvim_create_augroup("TypeScriptLspFormatting", { clear = true }),
-    pattern = { "*.ts", "*.tsx" },
-    callback = function()
-        -- Additional TypeScript-specific actions
-        vim.cmd("TSToolsRemoveUnused")
-        vim.cmd("TSToolsSortImports")
-        vim.cmd("TSToolsAddMissingImports")
-        require("notify")("Formatted and organized imports for TypeScript", "info")
-    end,
+-- Define terminal key mappings
+local function set_terminal_keymaps()
+    local opts = { noremap = true }
+    vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+    vim.api.nvim_buf_set_keymap(0, 'n', 'q', "<cmd>ToggleTerm<cr>", opts)
+end
+
+-- Create the autocmd for terminal buffers
+vim.api.nvim_create_autocmd("TermOpen", {
+    pattern = "term://*",
+    callback = set_terminal_keymaps,
 })
+
+-- -- TypeScript-specific actions
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     group = vim.api.nvim_create_augroup("TypeScriptLspFormatting", { clear = true }),
+--     pattern = { "*.ts", "*.tsx" },
+--     callback = function()
+--         -- Additional TypeScript-specific actions
+--         vim.cmd("TSToolsRemoveUnused")
+--         vim.cmd("TSToolsSortImports")
+--         vim.cmd("TSToolsAddMissingImports")
+--         require("notify")("Formatted and organized imports for TypeScript", "info")
+--     end,
+-- })

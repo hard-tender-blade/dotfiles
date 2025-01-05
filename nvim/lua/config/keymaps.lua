@@ -13,6 +13,15 @@ k.set("n", "<D-r>", ":lua vim.lsp.buf.rename()<CR>", opts)                      
 k.set("n", "<D-/>", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)                 -- Toggle line comment
 k.set("x", "<D-/>", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts) -- Toggle block comment
 k.set("n", "<D-.>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)                                        -- Show code actions
+k.set("n", "<D-l>", "<cmd>LazyGit<cr>", opts)                                                              -- Open LazyGit
+k.set("n", "<D-n>", ":nohl<CR>", opts)                                                                     -- Clear search highlights
+k.set("i", "<D-p>", [[copilot#Accept("\<CR>")]], {
+    silent = true,
+    expr = true,
+    script = true,
+    replace_keycodes = false,
+    desc = "Accept Copilot suggestion"
+})
 
 -- Buffer manipulation
 k.set("n", "<D-t>", "<cmd>Telescope find_files<cr>") -- Find files and open in buffer
@@ -27,26 +36,22 @@ k.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" 
 k.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Search help tags" })
 k.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
 
+k.set("n", "<leader>ss", ":STSessionStart<cr>", { desc = "Start session", silent = true })
+k.set("n", "<leader>sk", ":STSessionKill<cr>", { desc = "Kill session", silent = true })
+k.set("n", "<leader>sl", ":STSessionTimeLeft<cr>", { desc = "Show time left", silent = true })
+
 -- Miscellaneous
 k.set("i", "jk", "<ESC>", opts) -- Exit insert mode with jk
-k.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
-k.set("n", "<leader>l", "<cmd>LazyGit<cr>", { desc = "Open LazyGit" })
 k.set("n", "x", '"_x', { desc = "Delete character without yanking" })
 k.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 k.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
+k.set("n", "<leader>sh", ":lua vim.lsp.buf.signature_help()<CR>", { desc = "Show signature help" })
 
--- Copilot
-k.set("i", "<D-p>", [[copilot#Accept("\<CR>")]], {
-    silent = true,
-    expr = true,
-    script = true,
-    replace_keycodes = false,
-    desc = "Accept Copilot suggestion"
-})
-
--- TODO test if i like this
--- Incremental selection (with treesitter)
---- gnn - Start selection
---- grn - Increment by node
---- grc - Increment by scope
---- grm - Decrement by node
+-- Process Typescript files
+local processTS = function()
+    vim.cmd("TSToolsRemoveUnused")
+    vim.cmd("TSToolsAddMissingImports")
+    vim.cmd("TSToolsSortImports")
+    require("notify")("Formatted and organized imports for TypeScript", "info")
+end
+k.set("n", "<leader>t", processTS, { desc = "Process TypeScript file" })

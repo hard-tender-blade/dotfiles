@@ -63,8 +63,7 @@ map cmd+z nop
 
 # map cmd+h neighboring_window left
 # map cmd+l neighboring_window right
-
-window_margin_width 5 0 0
+window_margin_width 0
 
 # Remove padding by setting it to zero
 padding_width 0
@@ -2722,6 +2721,6 @@ font_family MesloLGS Nerd Font Mono
 
 
 # BEGIN_KITTY_THEME
-# Nordfox
+# One Dark
 include current-theme.conf
 # END_KITTY_THEME

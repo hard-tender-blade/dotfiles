@@ -8,7 +8,7 @@ return {
 
         -- custom setup
         notify.setup({
-            stages = "fade",    -- animation style
+            stages = "static",  -- animation style
             render = "minimal", -- notification appearance: default|simple
             timeout = 800,      -- time to out
             merge_duplicates = true,
