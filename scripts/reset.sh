@@ -1,4 +1,5 @@
 #!/bin/bash
+#bash <(curl -fsSL https://raw.githubusercontent.com/hard-tender-blade/dotfiles/HEAD/scripts/reset.sh)
 
 continueMessage() {
     echo "Press any key to continue..."
