@@ -12,24 +12,24 @@ echo "---------------------------------------------"
 
 echo "1/6 Battery"
 echo "Go to [Battery] and set [Low power mode] to [Only on Battery]"
-continueMessage()
+continueMessage
 
 echo "2/6 Accessibility Zoom"
 echo "Go to [Accessibility > Zoom] and set [Modifier key for scroll gesture] to [Option]"
-continueMessage()
+continueMessage
 
 echo "3/6 Control Center"
 echo "Go to [Control Center] and make DONT SHOW [Blutooth, AirDrop, StageManager]"
 echo "Go to [Control Center > Battery] and check all options"
 echo "Go to [Control Center > Menu Bar Only] and uncheck all options"
-continueMessage()
+continueMessage
 
 echo "4/6 Lock Screen"
 echo "Go to [Lock Screen] and set [Start Screen Saver when inactive] to [never]"
 echo "Go to [Lock Screen] and set [Turn dispay off on battery when inactive] to [For 2 minutes]"
 echo "Go to [Lock Screen] and set [Turn dispay off on power adapter when inactive] to [For 10 minutes]"
 echo "Go to [Lock Screen] and set [Require password after screen saver beg...] to [immediately]"
-continueMessage()
+continueMessage
 
 echo "5/6 Keyboard"
 echo "Go to [Keyboard] and set [Key repeat rate] to [Fast]"
@@ -38,12 +38,12 @@ echo "Go to [Keyboard > Shortcuts > Screenshots] and uncheck first 2 options and
 echo "Go to [Keyboard > Shortcuts > Screenshots] and set [Save picture of selected area as a file] to [Shift-Ctrl-\`]"
 echo "Go to [Keyboard > Shortcuts > Screenshots] and set [Copy picture of selected area to the clipboard] to [Shift-Ctrl-\`]"
 echo "Go to [Keyboard > Shortcuts > Modifier Keys] and set [Caps Lock] to [Control]"
-continueMessage()
+continueMessage
 
 echo "6/6 Trackpad"
 echo "Go to [Trackpad] and set [Tracking speed] to [Middle - 1]"
 echo "Go to [Trackpad] and set [Click] to [Light]"
-continueMessage()
+continueMessage
 
 echo "---------------------------------------------"
 echo "Install Homebrew"
