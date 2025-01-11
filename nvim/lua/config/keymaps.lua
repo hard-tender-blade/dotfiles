@@ -39,19 +39,21 @@ k.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
 k.set("n", "<leader>ss", ":STSessionStart<cr>", { desc = "Start session", silent = true })
 k.set("n", "<leader>sk", ":STSessionKill<cr>", { desc = "Kill session", silent = true })
 k.set("n", "<leader>sl", ":STSessionTimeLeft<cr>", { desc = "Show time left", silent = true })
+k.set("n", "<leader>sh", ":lua vim.lsp.buf.signature_help()<CR>", { desc = "Show signature help" })
+k.set("n", "<leader>g", ":lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
 
 -- Miscellaneous
 k.set("i", "jk", "<ESC>", opts) -- Exit insert mode with jk
 k.set("n", "x", '"_x', { desc = "Delete character without yanking" })
 k.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 k.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
-k.set("n", "<leader>sh", ":lua vim.lsp.buf.signature_help()<CR>", { desc = "Show signature help" })
 
 -- Process Typescript files
 local processTS = function()
     vim.cmd("TSToolsRemoveUnused")
     vim.cmd("TSToolsAddMissingImports")
     vim.cmd("TSToolsSortImports")
-    require("notify")("Formatted and organized imports for TypeScript", "info")
+    vim.cmd("TailwindSort")
+    require("notify")("Processed TS file", "info")
 end
 k.set("n", "<leader>t", processTS, { desc = "Process TypeScript file" })
