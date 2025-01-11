@@ -10,7 +10,7 @@ return {
         notify.setup({
             stages = "static",  -- animation style
             render = "minimal", -- notification appearance: default|simple
-            timeout = 800,      -- time to out
+            timeout = 3800,     -- time to out
             merge_duplicates = true,
         })
 
