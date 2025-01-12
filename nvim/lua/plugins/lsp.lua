@@ -45,7 +45,19 @@ return {
             -- npm i -g dockerfile-language-server-nodejs
             require('lspconfig').dockerls.setup { capabilities = capabilities }
 
-
+            -- brew install python-lsp-server
+            -- require 'lspconfig'.pylsp.setup {
+            --     settings = {
+            --         pylsp = {
+            --             plugins = {
+            --                 pycodestyle = {
+            --                     ignore = { 'W391' },
+            --                     maxLineLength = 100
+            --                 }
+            --             }
+            --         }
+            --     }
+            -- }
 
             -- install all lsps command:
             -- npm i -g typescript-language-server typescript @tailwindcss/language-server @olrtg/emmet-language-server vscode-langservers-extracted bash-language-server dockerfile-language-server-nodejs
