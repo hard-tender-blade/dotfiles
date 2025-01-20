@@ -3,7 +3,7 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             {
-                -- this is for the nvim lua config files to see signatures etc.
+                -- Lazy.nvim for Lua development
                 "folke/lazydev.nvim",
                 ft = "lua",
                 opts = {
@@ -13,40 +13,97 @@ return {
                 },
             },
             {
+                -- TypeScript tools
                 "pmizio/typescript-tools.nvim",
                 dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
                 opts = {},
-            }
+            },
+            {
+                -- Copilot integration
+                "zbirenbaum/copilot.lua",
+                cmd = "Copilot",
+                event = "InsertEnter",
+                config = function()
+                    require("copilot").setup({
+                        suggestion = { enabled = false },
+                        panel = { enabled = false },
+                    })
+                end,
+            },
+            {
+                -- Copilot as a source for nvim-cmp
+                "zbirenbaum/copilot-cmp",
+                dependencies = { "zbirenbaum/copilot.lua" },
+                config = function()
+                    require("copilot_cmp").setup()
+                end,
+            },
+            {
+                -- nvim-cmp and dependencies
+                "hrsh7th/nvim-cmp",
+                dependencies = {
+                    "hrsh7th/cmp-nvim-lsp",     -- LSP completions
+                    "hrsh7th/cmp-buffer",       -- Buffer completions
+                    "hrsh7th/cmp-path",         -- Path completions
+                    "saadparwaiz1/cmp_luasnip", -- Snippet completions
+                    "L3MON4D3/LuaSnip",         -- Snippet engine
+                    "onsails/lspkind.nvim",     -- Icons for completion items
+                },
+            },
         },
         config = function()
-            local capabilities = require('blink.cmp').get_lsp_capabilities()
+            local cmp = require("cmp")
+            local lspkind = require("lspkind")
 
-            -- brew install lua-language-server
-            require('lspconfig').lua_ls.setup { capabilities = capabilities }
+            cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        require("luasnip").lsp_expand(args.body)
+                    end,
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ["<Down>"] = cmp.mapping.select_next_item(),
+                    ["<Right>"] = cmp.mapping.select_next_item(),
+                    ["<Up>"] = cmp.mapping.select_prev_item(),
+                    ["<Left>"] = cmp.mapping.select_prev_item(),
+                    ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                }),
+                formatting = {
+                    expandable_indicator = false,
+                    format = lspkind.cmp_format({
+                        mode = "symbol_text",
+                        maxwidth = 50,
+                        ellipsis_char = "...",
+                    }),
+                },
+                sources = cmp.config.sources({
+                    { name = "copilot" },  -- Copilot source
+                    { name = "nvim_lsp" }, -- LSP source
+                    { name = "luasnip" },  -- Snippet source
+                    { name = "buffer" },   -- Buffer source
+                    { name = "path" },     -- Path source
+                }),
+            })
 
-            -- npm install -g typescript-language-server typescript
-            require('lspconfig').ts_ls.setup { capabilities = capabilities }
+            -- Setup LSP capabilities for cmp
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            -- npm install -g @tailwindcss/language-server
-            require('lspconfig').tailwindcss.setup { capabilities = capabilities }
+            -- Update all existing LSP setups with enhanced capabilities
+            local lspconfig = require("lspconfig")
+            lspconfig.lua_ls.setup { capabilities = capabilities }
+            lspconfig.ts_ls.setup { capabilities = capabilities }
+            lspconfig.tailwindcss.setup { capabilities = capabilities }
+            lspconfig.emmet_language_server.setup { capabilities = capabilities }
+            lspconfig.cssls.setup { capabilities = capabilities }
+            lspconfig.jsonls.setup { capabilities = capabilities }
+            lspconfig.bashls.setup { capabilities = capabilities }
+            lspconfig.dockerls.setup { capabilities = capabilities }
+            lspconfig.clangd.setup { capabilities = capabilities }
 
-            -- npm install -g @olrtg/emmet-language-server
-            require('lspconfig').emmet_language_server.setup { capabilities = capabilities }
-
-            -- npm i -g vscode-langservers-extracted
-            require('lspconfig').cssls.setup { capabilities = capabilities }
-
-            -- npm i -g vscode-langservers-extracted
-            require('lspconfig').jsonls.setup { capabilities = capabilities }
-
-            -- npm i -g bash-language-server
-            require('lspconfig').bashls.setup { capabilities = capabilities }
-
-            -- npm i -g dockerfile-language-server-nodejs
-            require('lspconfig').dockerls.setup { capabilities = capabilities }
-
-            -- brew install python-lsp-server
-            -- require 'lspconfig'.pylsp.setup {
+            -- lspconfig.gopls.setup { capabilities = capabilities }
+            -- lspconfig.pylsp.setup {
+            --     capabilities = capabilities,
             --     settings = {
             --         pylsp = {
             --             plugins = {
@@ -58,10 +115,6 @@ return {
             --         }
             --     }
             -- }
-
-            -- install all lsps command:
-            -- npm i -g typescript-language-server typescript @tailwindcss/language-server @olrtg/emmet-language-server vscode-langservers-extracted bash-language-server dockerfile-language-server-nodejs
-            -- brew install lua-language-server
-        end
-    }
+        end,
+    },
 }

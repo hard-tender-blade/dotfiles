@@ -56,7 +56,7 @@ brew install bat eza ffmpeg fzf git lazygit lua-language-server neovim neofetch 
 echo "---------------------------------------------"
 echo "Install GUI apps, fonts"
 echo "---------------------------------------------"
-brew --cask aerospace kitty telegram steam font-meslo-lg-nerd-font font-symbols-only-nerd-font discord
+brew --cask aerospace kitty telegram steam font-meslo-lg-nerd-font font-symbols-only-nerd-font discord obsidian
 
 echo "---------------------------------------------"
 echo "Clone dotfiles"
