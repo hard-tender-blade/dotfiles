@@ -2,7 +2,7 @@ return {
     {
         "hard-tender-blade/session-timer.nvim",
         dependencies = {
-            "rcarriga/nvim-notify",
+            -- "rcarriga/nvim-notify",
         },
         config = function()
             require("session-timer").setup({

@@ -12,8 +12,8 @@ vim.api.nvim_create_autocmd("WinNew", {
 vim.api.nvim_create_autocmd("BufWritePre", {
     group = vim.api.nvim_create_augroup("LspFormatting", { clear = true }),
     callback = function()
-        vim.lsp.buf.format({ async = false })           -- Set async = true if you want it to be non-blocking
-        require("notify")("Formatted with LSP", "info") -- Notify that the file was formatted
+        vim.lsp.buf.format({ async = false }) -- Set async = true if you want it to be non-blocking
+        vim.notify("Formatted with LSP", vim.log.levels.INFO)
     end,
 })
 
@@ -30,15 +30,16 @@ vim.api.nvim_create_autocmd("TermOpen", {
     callback = set_terminal_keymaps,
 })
 
--- -- TypeScript-specific actions
+-- TypeScript-specific actions
 -- vim.api.nvim_create_autocmd("BufWritePre", {
 --     group = vim.api.nvim_create_augroup("TypeScriptLspFormatting", { clear = true }),
 --     pattern = { "*.ts", "*.tsx" },
---     callback = function()
---         -- Additional TypeScript-specific actions
---         vim.cmd("TSToolsRemoveUnused")
---         vim.cmd("TSToolsSortImports")
+--     callback = vim.schedule_wrap(function()
 --         vim.cmd("TSToolsAddMissingImports")
---         require("notify")("Formatted and organized imports for TypeScript", "info")
---     end,
+--         vim.cmd("TSToolsSortImports")
+--         vim.cmd("TSToolsRemoveUnused")
+--         vim.cmd("TailwindSort")
+--         vim.cmd("write")
+--         vim.notify("Formatted and processed TypeScript", vim.log.levels.INFO)
+--     end),
 -- })

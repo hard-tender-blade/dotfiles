@@ -17,6 +17,17 @@ return {
                 "pmizio/typescript-tools.nvim",
                 dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
                 opts = {},
+                config = function()
+                    require("typescript-tools").setup({
+                        settings = {
+                            separate_diagnostic_server = false,
+                            publish_diagnostic_on = "change",
+                            tsserver_file_preferences = {
+                                importModuleSpecifierPreference = "non-relative",
+                            }
+                        }
+                    })
+                end,
             },
             {
                 -- Copilot integration
@@ -63,11 +74,11 @@ return {
                 },
                 mapping = cmp.mapping.preset.insert({
                     ["<Down>"] = cmp.mapping.select_next_item(),
-                    ["<Right>"] = cmp.mapping.select_next_item(),
+                    -- ["<Right>"] = cmp.mapping.select_next_item(),
                     ["<Up>"] = cmp.mapping.select_prev_item(),
-                    ["<Left>"] = cmp.mapping.select_prev_item(),
+                    -- ["<Left>"] = cmp.mapping.select_prev_item(),
                     ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                    -- ["<CR>"] = cmp.mapping.confirm({ select = true }),
                 }),
                 formatting = {
                     expandable_indicator = false,
@@ -92,7 +103,7 @@ return {
             -- Update all existing LSP setups with enhanced capabilities
             local lspconfig = require("lspconfig")
             lspconfig.lua_ls.setup { capabilities = capabilities }
-            lspconfig.ts_ls.setup { capabilities = capabilities }
+            -- lspconfig.ts_ls.setup { capabilities = capabilities } i think that typescript-tools do this already, its comented to avoid duplicates
             lspconfig.tailwindcss.setup { capabilities = capabilities }
             lspconfig.emmet_language_server.setup { capabilities = capabilities }
             lspconfig.cssls.setup { capabilities = capabilities }
@@ -100,6 +111,7 @@ return {
             lspconfig.bashls.setup { capabilities = capabilities }
             lspconfig.dockerls.setup { capabilities = capabilities }
             lspconfig.clangd.setup { capabilities = capabilities }
+            lspconfig.arduino_language_server.setup { capabilities = capabilities }
 
             -- lspconfig.gopls.setup { capabilities = capabilities }
             -- lspconfig.pylsp.setup {

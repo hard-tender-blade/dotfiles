@@ -16,13 +16,13 @@ k.set("x", "<D-/>", "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn
 k.set("n", "<D-.>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)                                        -- Show code actions
 k.set("n", "<D-l>", "<cmd>LazyGit<cr>", opts)                                                              -- Open LazyGit
 k.set("n", "<D-n>", ":nohl<CR>", opts)                                                                     -- Clear search highlights
-k.set("i", "<D-p>", [[copilot#Accept("\<CR>")]], {
-    silent = true,
-    expr = true,
-    script = true,
-    replace_keycodes = false,
-    desc = "Accept Copilot suggestion"
-})
+-- k.set("i", "<D-p>", [[copilot#Accept("\<CR>")]], {
+--     silent = true,
+--     expr = true,
+--     script = true,
+--     replace_keycodes = false,
+--     desc = "Accept Copilot suggestion"
+-- })
 
 -- Buffer manipulation
 k.set("n", "<D-t>", "<cmd>Telescope find_files<cr>") -- Find files and open in buffer
@@ -30,6 +30,7 @@ k.set("n", "<D-w>", ":bd<CR>", opts)                 -- Delete current buffer
 for i = 1, 10 do
     local key = string.format("<D-%d>", i % 10)
     k.set("n", key, string.format(":LualineBuffersJump %d<CR>", i), opts) -- Jump to buffer
+    k.set("i", key, string.format(":LualineBuffersJump %d<CR>", i), opts) -- Jump to buffer
 end
 
 -- Telescope
@@ -58,11 +59,11 @@ k.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
 k.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
 -- Process Typescript files
-local processTS = function()
-    vim.cmd("TSToolsRemoveUnused")
+local processTS = vim.schedule_wrap(function()
     vim.cmd("TSToolsAddMissingImports")
     vim.cmd("TSToolsSortImports")
+    vim.cmd("TSToolsRemoveUnused")
     vim.cmd("TailwindSort")
-    require("notify")("Processed TS file", "info")
-end
+    vim.notify("Processed TS file", vim.log.levels.INFO)
+end)
 k.set("n", "<leader>t", processTS, { desc = "Process TypeScript file" })
