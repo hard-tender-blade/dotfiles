@@ -29,26 +29,26 @@ return {
                     })
                 end,
             },
-            {
-                -- Copilot integration
-                "zbirenbaum/copilot.lua",
-                cmd = "Copilot",
-                event = "InsertEnter",
-                config = function()
-                    require("copilot").setup({
-                        suggestion = { enabled = false },
-                        panel = { enabled = false },
-                    })
-                end,
-            },
-            {
-                -- Copilot as a source for nvim-cmp
-                "zbirenbaum/copilot-cmp",
-                dependencies = { "zbirenbaum/copilot.lua" },
-                config = function()
-                    require("copilot_cmp").setup()
-                end,
-            },
+            -- {
+            --     -- Copilot integration
+            --     "zbirenbaum/copilot.lua",
+            --     cmd = "Copilot",
+            --     event = "InsertEnter",
+            --     config = function()
+            --         require("copilot").setup({
+            --             suggestion = { enabled = false },
+            --             panel = { enabled = false },
+            --         })
+            --     end,
+            -- },
+            -- {
+            --     -- Copilot as a source for nvim-cmp
+            --     "zbirenbaum/copilot-cmp",
+            --     dependencies = { "zbirenbaum/copilot.lua" },
+            --     config = function()
+            --         require("copilot_cmp").setup()
+            --     end,
+            -- },
             {
                 -- nvim-cmp and dependencies
                 "hrsh7th/nvim-cmp",
@@ -89,11 +89,12 @@ return {
                     }),
                 },
                 sources = cmp.config.sources({
-                    { name = "copilot" },  -- Copilot source
-                    { name = "nvim_lsp" }, -- LSP source
-                    { name = "luasnip" },  -- Snippet source
-                    { name = "buffer" },   -- Buffer source
-                    { name = "path" },     -- Path source
+                    { name = 'render-markdown' }, -- .MD render
+                    -- { name = "copilot" },  -- Copilot source
+                    { name = "nvim_lsp" },        -- LSP source
+                    { name = "luasnip" },         -- Snippet source
+                    { name = "buffer" },          -- Buffer source
+                    { name = "path" },            -- Path source
                 }),
             })
 
