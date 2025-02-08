@@ -25,12 +25,13 @@ k.set("n", "<D-n>", ":nohl<CR>", opts)                                          
 -- })
 
 -- Buffer manipulation
-k.set("n", "<D-t>", "<cmd>Telescope find_files<cr>") -- Find files and open in buffer
-k.set("n", "<D-w>", ":bd<CR>", opts)                 -- Delete current buffer
+k.set("n", "<D-t>", "<cmd>Telescope find_files<cr>")       -- Find files and open in buffer
+k.set("i", "<D-t>", "<ESC> <cmd>Telescope find_files<cr>") -- Find files and open in buffer
+k.set("n", "<D-w>", ":bd<CR>", opts)                       -- Delete current buffer
 for i = 1, 10 do
     local key = string.format("<D-%d>", i % 10)
-    k.set("n", key, string.format(":LualineBuffersJump %d<CR>", i), opts) -- Jump to buffer
-    k.set("i", key, string.format(":LualineBuffersJump %d<CR>", i), opts) -- Jump to buffer
+    k.set("n", key, string.format(":LualineBuffersJump %d<CR>", i), opts)       -- Jump to buffer
+    k.set("i", key, string.format("<ESC> :LualineBuffersJump %d<CR>", i), opts) -- Jump to buffer
 end
 
 -- Telescope

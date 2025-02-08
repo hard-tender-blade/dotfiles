@@ -37,8 +37,6 @@ return {
             dashboard.button("r", "Restore Session", "<cmd>SessionRestore<CR>"),
             dashboard.button("o", "Open Trminal", "<cmd>ToggleTerm<CR>"),
             dashboard.button("t", "Telescope", "<cmd>Telescope find_files<CR>"),
-            dashboard.button("l", "LazyGit", "<cmd>LazyGit<CR>"),
-            dashboard.button("e", "Yazi", "<cmd>Yazi<CR>"),
             dashboard.button("q", "Quit", "<cmd>qa<CR>"),
         }
 
