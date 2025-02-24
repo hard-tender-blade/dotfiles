@@ -4,11 +4,13 @@ local k = vim.keymap
 local opts = { noremap = true, silent = true }
 
 -- General keymaps
+k.set("n", "<S-j>", "5j", opts)
+k.set("n", "<S-k>", "5k", opts)
 k.set("n", "<D-s>", ":wa<CR>", opts)                                                                       -- Save all files
 k.set("i", "<D-s>", "<Esc>:wa<CR>li", opts)                                                                -- Save all files and return to insert mode
 k.set("n", "<D-q>", ":wa<CR>:qa<CR>", opts)                                                                -- Quit Neovim after saving
 k.set("i", "<D-q>", "<Esc>:wa<CR>:qa<CR>", opts)                                                           -- Quit Neovim and return to insert mode
-k.set("n", "<D-e>", "<cmd>Yazi<CR>", { desc = "Open Yazi on current file" })                               -- Open Yazi
+-- k.set("n", "<D-e>", "<cmd>Yazi<CR>", { desc = "Open Yazi on current file" })                               -- Open Yazi
 k.set("n", "<D-r>", ":lua vim.lsp.buf.rename()<CR>", opts)                                                 -- Rename variable
 k.set("i", "<D-/>", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)                 -- Toggle line comment
 k.set("n", "<D-/>", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)                 -- Toggle line comment
@@ -47,11 +49,7 @@ k.set("n", "<leader>sh", ":lua vim.lsp.buf.signature_help()<CR>", { desc = "Show
 k.set("n", "<leader>g", ":lua vim.lsp.buf.definition()<CR>", { desc = "Go to definition" })
 
 -- Terminal
-vim.keymap.set("n", "<D-o>",
-    function()
-        toggleterm_open(_G.last_opened_terminal)
-    end,
-    { noremap = true, silent = true })
+-- <C-o> in lua/plugins/toggleterm.lua
 
 -- Miscellaneous
 k.set("i", "jk", "<ESC>", opts) -- Exit insert mode with jk

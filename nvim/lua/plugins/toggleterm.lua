@@ -50,5 +50,12 @@ return {
         end
 
         require("toggleterm").setup({})
+
+        -- To open and close toggle term
+        vim.keymap.set("n", "<D-o>",
+            function()
+                toggleterm_open(_G.last_opened_terminal)
+            end,
+            { noremap = true, silent = true })
     end
 }

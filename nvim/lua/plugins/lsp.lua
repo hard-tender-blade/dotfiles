@@ -53,11 +53,17 @@ return {
                 -- nvim-cmp and dependencies
                 "hrsh7th/nvim-cmp",
                 dependencies = {
-                    "hrsh7th/cmp-nvim-lsp",        -- LSP completions
-                    "hrsh7th/cmp-buffer",          -- Buffer completions
-                    "hrsh7th/cmp-path",            -- Path completions
-                    "saadparwaiz1/cmp_luasnip",    -- Snippet completions
-                    "L3MON4D3/LuaSnip",            -- Snippet engine
+                    "hrsh7th/cmp-nvim-lsp",     -- LSP completions
+                    "hrsh7th/cmp-buffer",       -- Buffer completions
+                    "hrsh7th/cmp-path",         -- Path completions
+                    "saadparwaiz1/cmp_luasnip", -- Snippet completions
+                    {
+
+                        "L3MON4D3/LuaSnip",                                                                    -- Snippet engine
+                        config = function()
+                            require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/config/" }) -- Load custom snippets too
+                        end
+                    },
                     "mlaursen/vim-react-snippets", -- React snippets
                     "onsails/lspkind.nvim",        -- Icons for completion items
                 },

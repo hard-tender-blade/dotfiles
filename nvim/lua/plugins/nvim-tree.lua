@@ -63,7 +63,7 @@ return {
                 },
             },
             filters = {
-                custom = { ".DS_Store" },
+                enable = false,
             },
             git = {
                 enable = true,
