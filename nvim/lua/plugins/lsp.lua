@@ -2,16 +2,16 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            {
-                -- Lazy.nvim for Lua development
-                "folke/lazydev.nvim",
-                ft = "lua",
-                opts = {
-                    library = {
-                        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-                    },
-                },
-            },
+            -- {
+            --     -- Lazy.nvim for Lua development
+            --     "folke/lazydev.nvim",
+            --     ft = "lua",
+            --     opts = {
+            --         library = {
+            --             { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            --         },
+            --     },
+            -- },
             {
                 -- TypeScript tools
                 "pmizio/typescript-tools.nvim",
@@ -61,7 +61,7 @@ return {
 
                         "L3MON4D3/LuaSnip",                                                                    -- Snippet engine
                         config = function()
-                            require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/config/" }) -- Load custom snippets too
+                            require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/snippets/" }) -- Load custom snippets too
                         end
                     },
                     "mlaursen/vim-react-snippets", -- React snippets

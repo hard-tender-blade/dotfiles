@@ -13,7 +13,7 @@ generic-help  ?
 generic-quit  q Q 
 generic-save  s S ^S 
 generic-reload  R 
-generic-copy  c 
+generic-copy  y 
 generic-paste  p ^V 
 generic-change-view  TAB 
 generic-prev-view  KEY_BTAB 
@@ -31,8 +31,8 @@ generic-prev-week  W ^K
 generic-next-week  w 
 generic-prev-month  M 
 generic-next-month  m 
-generic-prev-year  Y 
-generic-next-year  y 
+generic-prev-year  ]
+generic-next-year  [
 generic-scroll-down  ^N 
 generic-scroll-up  ^P 
 generic-goto-today  ^G 
