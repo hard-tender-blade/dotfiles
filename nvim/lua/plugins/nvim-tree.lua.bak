@@ -1,0 +1,73 @@
+return {
+  'nvim-tree/nvim-tree.lua',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  opts = {
+    on_attach = function(bufnr)
+      local api = require('nvim-tree.api')
+      api.config.mappings.default_on_attach(bufnr)
+      vim.keymap.set('n', '<Esc>', api.tree.close, { buffer = bufnr, noremap = true, silent = true })
+    end,
+    view = {
+      float = {
+        enable = true,
+        open_win_config = function()
+          local screen_w = vim.opt.columns:get()
+          local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+          local width = math.floor(screen_w * 0.8)
+          local height = math.floor(screen_h * 0.8)
+          return {
+            relative = "editor",
+            border = "single",
+            width = width,
+            height = height,
+            row = math.floor((screen_h - height) / 2),
+            col = math.floor((screen_w - width) / 2),
+            title = " Files ",
+            title_pos = "left",
+          }
+        end,
+      },
+    },
+    update_focused_file = {
+      enable = true,
+    },
+    renderer = {
+        indent_markers = {
+            enable = false,
+        },
+        icons = {
+            git_placement = "after",
+            glyphs = {
+                folder = {
+                    arrow_closed = "", -- arrow when folder is closed
+                    arrow_open = "",   -- arrow when folder is open
+                },
+                git = {
+                    unstaged = "M",  -- Changes not staged (modified files)
+                    staged = "A",    -- Newly added files staged for commit
+                    unmerged = "",
+                    renamed = "M",   -- Renamed files
+                    untracked = "A", -- New files not tracked by Git
+                    deleted = "D",   -- Deleted files
+                    ignored = "I",
+                }
+            },
+
+        },
+    },
+    actions = {
+        open_file = {
+            window_picker = {
+                enable = false,
+            },
+            quit_on_open = true,
+        },
+    },
+    filters = {
+        enable = false,
+    },
+    git = {
+        enable = true,
+    },
+  },
+}

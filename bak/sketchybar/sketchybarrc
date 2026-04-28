@@ -1,0 +1,47 @@
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+sketchybar --bar position=top height=24 blur_radius=30 color=0x00000000
+
+default=(
+  padding_left=5
+  padding_right=0
+  icon.font="Hack Nerd Font:Bold:14.0"
+  label.font="SF Pro:Semibold:14.0"
+  icon.color=0xffffffff
+  label.color=0xffffffff
+  icon.padding_left=4
+  icon.padding_right=2
+  label.padding_left=4
+  label.padding_right=4
+  updates=on
+)
+sketchybar --default "${default[@]}"
+
+sketchybar --add item clock right \
+  --set clock update_freq=10 script="$PLUGIN_DIR/clock.sh"
+
+sketchybar --add item volume right \
+  --set volume script="$PLUGIN_DIR/volume.sh" \
+  --subscribe volume volume_change
+
+sketchybar --add item battery right \
+  --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery system_woke power_source_change
+
+sketchybar --add item cpu right \
+  --set cpu update_freq=5 script="$PLUGIN_DIR/cpu.sh" icon="" \
+  --subscribe cpu system_woke
+
+sketchybar --add item mem right \
+  --set mem update_freq=5 script="$PLUGIN_DIR/mem.sh" icon="" \
+  --subscribe mem system_woke
+
+sketchybar --add event aerospace_workspace_change
+# sketchybar --add event aerospace_monitor_change
+
+sketchybar --add item workspace right \
+  --subscribe workspace aerospace_workspace_change \
+  --set workspace \
+    script='sketchybar --set workspace icon="" label="$FOCUSED_WORKSPACE"'
+
+sketchybar --update

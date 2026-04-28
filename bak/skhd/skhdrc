@@ -1,0 +1,31 @@
+ctrl - 1 : aerospace workspace 1
+ctrl - 2 : aerospace workspace 2
+ctrl - 3 : aerospace workspace 3
+ctrl - 4 : aerospace workspace 4
+ctrl - 5 : aerospace workspace 5
+ctrl - 6 : aerospace workspace 6
+ctrl - 7 : aerospace workspace 7
+ctrl - 8 : aerospace workspace 8
+ctrl - 9 : aerospace workspace 9
+ctrl - 0 : aerospace workspace 10
+
+ctrl + alt - 1 : aerospace move-node-to-workspace 1
+ctrl + alt - 2 : aerospace move-node-to-workspace 2
+ctrl + alt - 3 : aerospace move-node-to-workspace 3
+ctrl + alt - 4 : aerospace move-node-to-workspace 4
+ctrl + alt - 5 : aerospace move-node-to-workspace 5
+ctrl + alt - 6 : aerospace move-node-to-workspace 6
+ctrl + alt - 7 : aerospace move-node-to-workspace 7
+ctrl + alt - 8 : aerospace move-node-to-workspace 8
+ctrl + alt - 9 : aerospace move-node-to-workspace 9
+ctrl + alt - 0 : aerospace move-node-to-workspace 10
+
+ctrl - r : aerospace layout tiles horizontal vertical
+
+ctrl - q : m wallpaper --set ~/.config/wallpapers/dark/$(ls ~/.config/wallpapers/dark | awk 'BEGIN{srand()} {l[NR]=$0} END{print l[int(rand()*NR)+1]}') && sketchybar --set clock icon.color=0xffffffff label.color=0xffffffff --set volume icon.color=0xffffffff label.color=0xffffffff --set battery icon.color=0xffffffff label.color=0xffffffff --set cpu icon.color=0xffffffff label.color=0xffffffff --set mem icon.color=0xffffffff label.color=0xffffffff --set workspace label.color=0xffffffff
+ctrl - w : m wallpaper --set ~/.config/wallpapers/light/$(ls ~/.config/wallpapers/light | awk 'BEGIN{srand()} {l[NR]=$0} END{print l[int(rand()*NR)+1]}') && sketchybar --set clock icon.color=0xff000000 label.color=0xff000000 --set volume icon.color=0xff000000 label.color=0xff000000 --set battery icon.color=0xff000000 label.color=0xff000000 --set cpu icon.color=0xff000000 label.color=0xff000000 --set mem icon.color=0xff000000 label.color=0xff000000 --set workspace label.color=0xff000000
+
+ctrl - h : aerospace focus left
+ctrl - j : aerospace focus down
+ctrl - k : aerospace focus up
+ctrl - l : aerospace focus right
