@@ -1,0 +1,42 @@
+AEROSPACE KEYBINDINGS REFERENCE
+================================
+
+FOCUS (move between windows)
+  ctrl-h          focus left
+  ctrl-j          focus down
+  ctrl-k          focus up
+  ctrl-l          focus right
+
+MOVE WINDOW (reposition in layout)
+  alt-shift-h     move left
+  alt-shift-j     move down
+  alt-shift-k     move up
+  alt-shift-l     move right
+
+RESIZE
+  alt-minus       shrink window (-50)
+  alt-equal       grow window (+50)
+
+LAYOUT
+  ctrl-/          toggle tiles horizontal/vertical
+
+MOVE WORKSPACE TO MONITOR
+  ctrl-alt-j      move workspace to next monitor (wraps around)
+
+WORKSPACES  (ctrl + letter to switch, ctrl-alt + letter to send window there)
+  T   terminal        kitty
+  F   finder          Finder
+  B   browser         Zen
+  C   code            VS Code
+  D   docker          Docker
+  P   postman         Postman
+  Q   query / db      DBeaver
+  O   mongo           MongoDB Compass
+  S   slack           Slack
+  N   notifications   Discord
+  M   messages        Telegram
+  I   iMessage        Apple Messages
+  A   agenda          Calendar
+
+  e.g.  ctrl-n          → go to Discord workspace
+        ctrl-alt-n      → send focused window to Discord workspace
